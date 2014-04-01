@@ -33,7 +33,9 @@ if(isset($_POST['addComment'])){
     <head>
         <meta charset="UTF-8">
 <!--        <meta http-equiv="refresh" content="45;url=index.php">-->
-        <title>Why Is It That...</title>
+        <title>Wiit - Why Is It That...</title>
+        <meta name="description" content="What is a wiit...it stands for Why Is It That. These are ironic moments in life that people can just not believe. This site was created to record those moments."/>
+        <meta name="keyword" content="Wiit, why, is, it, that, why is it that"/>
         <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
         <link href="./css/bootstrap.css" rel="stylesheet"/>
         <link href="./css/stylesheet.css" rel="stylesheet" />
@@ -143,5 +145,15 @@ if(isset($_POST['addComment'])){
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49596745-1', 'whyisitthat.net');
+  ga('send', 'pageview');
+
+</script>
     </body>
 </html>
