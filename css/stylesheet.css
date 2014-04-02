@@ -54,7 +54,7 @@ header h1{
 }
 .commentsRow{
     
-    min-height: 190px;
+    min-height: 170px;
     margin-bottom: 10px;
     overflow: hidden;
     border-bottom: thin solid #eee;
@@ -74,7 +74,7 @@ header h1{
 .comment{
     font-size: 18px;
     margin: 3%;
-    min-height: 100px;
+    min-height: 80px;
 }
 .commentForm{
     min-height: 275px;
@@ -111,10 +111,25 @@ header h1{
 }
 
 .twitter{
-    margin-top: 10px;
+    background: url('./images/social-flat.png');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 31px;
+    margin-top: 0px;
+    background-position: 0px 0px;
+    cursor: pointer;
+    margin-left: 15px;
 }
 .facebook{
     margin-top: 10px;
+    background: url('./images/social-flat.png');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 43px;
+    margin-top: 8px;
+    background-position: 0px -38px;
+    cursor: pointer;
+    margin-left: 15px;
 }
 footer{
     width: 100%;
@@ -122,4 +137,6 @@ footer{
     text-align: left;
     color: white;
     font-size: 11px;
+    padding-left: 28px;
+    margin-top: 10px;
 }

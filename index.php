@@ -33,7 +33,7 @@ if(isset($_POST['addComment'])){
     <head>
         <meta charset="UTF-8">
 <!--        <meta http-equiv="refresh" content="45;url=index.php">-->
-        <title>Wiit - Why Is It That...</title>
+        <title>Why Is It That...</title>
         <meta name="description" content="What is a wiit...it stands for Why Is It That. These are ironic moments in life that people can just not believe. This site was created to record those moments."/>
         <meta name="keyword" content="Wiit, why, is, it, that, why is it that"/>
         <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
@@ -63,7 +63,7 @@ if(isset($_POST['addComment'])){
             
             <div class='row container-row grid-row'>
                 <div class="col-lg-12 col-md-12 col-sm-12 commentText">
-                    <div class='col-lg-3 col-md-3 col-sm-3 contentRight'>
+                    <div class='col-lg-4 col-md-4 col-sm-4 contentRight'>
                         
                         <div class='addComments'>
                             <div id='add'><h2>Add Comment</h2></div>
@@ -118,13 +118,13 @@ if(isset($_POST['addComment'])){
                             
                         </div>
                         <div class="twitter">
-                                <a href="https://twitter.com/whyisitthatthis" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @whyisitthatthis</a>
+                                <a id='twitter-home' href="https://twitter.com/whyisitthatthis" class="follow-button" ></a>
                             </div>
-                        <div>
-                            <div class="fb-like" data-href="http://www.whyisitthat.net/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                        <div class="facebook">
+                            <a id='facebook-home' href="https://www.facebook.com/whyisitthatwhen" ></a>
                         </div>
                     </div>
-                    <div class='col-lg-8 col-md-8 col-sm-8 contentLeft'>
+                    <div class='col-lg-7 col-md-7 col-sm-7 contentLeft'>
                    
                        <?php $comment->displayComments()?>
                             
@@ -136,15 +136,7 @@ if(isset($_POST['addComment'])){
             <footer></footer>
             
         </div>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

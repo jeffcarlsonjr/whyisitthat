@@ -6,7 +6,17 @@ $(document).ready(function(){
     });
 });
 
-
+$(document).ready(function(){
+    $('.twitter').click(function(event){
+        window.open($('#twitter-home').attr('href'), '_blank');
+    });
+    
+    $('.facebook').click(function(event){
+        window.open($('#facebook-home').attr('href'), '_blank');
+    });
+    
+    
+});
 
 function likeComment(id)
 {
