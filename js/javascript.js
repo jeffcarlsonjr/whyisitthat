@@ -56,23 +56,24 @@ function unLikeComment(id)
 }
 
 
-function addComment()
-{
-    var userName = $('#username').val();
-    var email = $('#email').val();
-    var comment = $('comment').val();
-    
-    $.ajax({
-        url: './ajax/addComment.php',
-        type: 'GET',
-        dataType: 'json',
-        data : {username: userName, email: email, comment: comment},
-        success: function(data) {
-            
-        },
-        error: function(data) {}
-    });
-}
+//function addComment()
+//{
+//    var userName = $('#username').val();
+//    var email = $('#email').val();
+//    var comment = $('comment').val();
+//  
+//    
+//    $.ajax({
+//        url: './ajax/addComment.php',
+//        type: 'GET',
+//        dataType: 'json',
+//        data : {username: userName, email: email, comment: comment},
+//        success: function(data) {
+//            
+//        },
+//        error: function(data) {}
+//    });
+//}
 
 function likes(id)
 {

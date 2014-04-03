@@ -70,7 +70,7 @@ if(isset($_POST['addComment'])){
                             <div class="commentForm">
                                 <div class="col-lg-12 col-md-12 col-sm-12" ng-controller="signupController">
                                     
-                                    <form name="commentForm"  ng-submit="submitForm();" action="./ajax/addComment.php" method="post" nonvalidate>
+                                    <form name="commentForm"  ng-submit="submitForm();"method="post" nonvalidate>
                                         <label>Username</label>
                                         <input type="text" class="form-control" id="username" ng-minlength=3 ng-maxlength=15 ng-model="comment.username" name='username' placeholder="Username" required/>
                                         
@@ -110,7 +110,7 @@ if(isset($_POST['addComment'])){
                                                 Your statement is too short.
                                             </small>
                                         </div>
-                                        <input type='submit' ng-disabled="commentForm.$invalid" value='Add Comment'  class="btn-primary"/>
+                                        <input type='submit' ng-disabled="commentForm.$invalid" value='Add Comment'  class="btn-primary" ng-click="resetForm();"/>
                                     </form>
                                     
                                 </div>
@@ -126,6 +126,15 @@ if(isset($_POST['addComment'])){
                     </div>
                     <div class='col-lg-7 col-md-7 col-sm-7 contentLeft'>
                    
+                        <div class='commentsRow'id='PreSyn' style='display: none;'>
+                            <div class='col-lg-10 col-md-10 col-sm-10 commentbox' >
+                            <div class='userName' id="userNamePreSyn"></div>
+                            <div class='comment' id='commentPreSyn'></div>
+                            <div id='likeBox' class='likeBox' data-like-id='".$row['id']."'></div>
+                            <div class='likeCount' id='likeCount' data-like-count=''></div>
+                            <script>//likes()</script>
+                            </div>
+                        </div>
                        <?php $comment->displayComments()?>
                             
                        

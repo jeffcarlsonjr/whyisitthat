@@ -56,7 +56,22 @@ class commentsClass {
         
     }
     
+    public function cleanText($text)
+    {
+        $badWords = array(
+            'ass' => 'a!@',
+            'fuck' => 'f&#k',
+            'shit' => 's@%t',
+            'pussy' => 'p#%!y',
+            'cunt' => 'c#$t',
+            'cock' => 'c#@k',
+            'dick' => 'd!@k',
+            'twat' => 't$#t'
+            );
 
+    $text = str_replace(array_keys($badWords), array_values($badWords), $text);
+    return $text;
+    }
 }
 
 

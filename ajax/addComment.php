@@ -5,10 +5,12 @@ $comment = new commentsClass();
 $user = new usersClass();
 
 // Gather information for user upload
-    
+    $json = file_get_contents("php://input");
+    $jsonData = json_decode($json, true);
 
-    $usersName = cleanInput($_POST['username']);
-    $userEmail = cleanInput($_POST['email']);
+
+    $usersName = cleanInput($jsonData['username']);
+    $userEmail = cleanInput($jsonData['email']);
   
     $date = date('Y-m-d H:i:s');
 // Set as data for class    
@@ -22,9 +24,10 @@ $user = new usersClass();
     
     $user_id = $_SESSION['user_id'];
  
-    $comments = cleanInput($_POST['comment']);
-
-    $data['comment'] = "'$comments'";
+    $comments = cleanInput($jsonData['comment']);
+    $cleanComment = $comment->cleanText($comments);
+    
+    $data['comment'] = "'$cleanComment'";
     $data['active'] = "1";
     $data['user_id'] = "'$user_id'";
     $data['dateCreated'] = "'$date'";
@@ -32,11 +35,11 @@ $user = new usersClass();
     $comment->createComment($data,'wiit_comments');
     
 
-    $message = stripcslashes($comments);
-    $messages = str_replace('"\"', '', $message);
-    $tweet->post('statuses/update', array('status' => "$message"));
+//    $message = stripcslashes($cleanComment);
+//    $messages = str_replace('"\"', '', $message);
+//    $tweet->post('statuses/update', array('status' => "$message"));
     
-    echo "<meta http-equiv='refresh' content='0;url=../index.php'>";
+    echo "<meta http-equiv='refresh' content='3;url=../index.php'>";
 
     
  
