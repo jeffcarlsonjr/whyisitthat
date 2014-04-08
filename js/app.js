@@ -25,6 +25,7 @@ validationApp.controller('commentCtrl', function($scope, $http){
 
 validationApp.controller('signupController',function($scope,$http)
     {
+        
         $scope.submitForm = function(){
             $scope.url = './ajax/addComment.php';
             if($scope.commentForm.$valid){
@@ -32,16 +33,20 @@ validationApp.controller('signupController',function($scope,$http)
                 $('#PreSyn').css('display', 'block');
                 $('#userNamePreSyn').html($scope.comment.username +' had to say');
                 $('#commentPreSyn').html($scope.comment.comment);
-                
+                $('#username').html("");
                 
                 $http.post($scope.url,{username: $scope.comment.username, email: $scope.comment.email, comment: $scope.comment.comment}).
                         success(function(data) {
-                          
+                         $scope.reset();
                         });
                         console.log($scope.comment.username);
                     }
                  
             };
+         $scope.reset = function() {
+            $scope.comment = {};
+            $scope.commentForm.$setPristine();
+        };
             
     });
 

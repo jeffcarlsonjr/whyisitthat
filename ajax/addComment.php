@@ -39,7 +39,7 @@ $user = new usersClass();
 //    $messages = str_replace('"\"', '', $message);
 //    $tweet->post('statuses/update', array('status' => "$message"));
     
-    echo "<meta http-equiv='refresh' content='3;url=../index.php'>";
+    echo "<meta http-equiv='refresh' content='0;url=../index.php'>";
 
     
  

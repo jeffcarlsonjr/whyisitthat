@@ -1,0 +1,18 @@
+
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+
+RewriteCond %{HTTP_HOST} ^whyisitthat.net$ [NC]
+RewriteRule (.*) http://www.whyisitthat.net/$1 [R=301,L]
+
+RewriteCond %{HTTP_USER_AGENT} libwww [NC,OR]
+
+RewriteCond %{QUERY_STRING} ^(.*)=http [NC]
+
+RewriteRule ^(.*)$ – [F,L]
+    
+<filesMatch "\.(js|css|html|php)$">
+        SetOutputFilter DEFLATE
+    </filesMatch>
+
+</ifModule>

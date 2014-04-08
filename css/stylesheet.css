@@ -111,25 +111,26 @@ header h1{
 }
 
 .twitter{
-    background: url('./images/social-flat.png');
+    /* background: url('./images/social-flat.png'); */
     background-repeat: no-repeat;
     width: 150px;
     height: 31px;
-    margin-top: 0px;
-    background-position: 0px 0px;
-    cursor: pointer;
-    margin-left: 15px;
+    /* margin-top: 0px; */
+    /* background-position: 0px 0px; */
+    /* cursor: pointer; */
+    /* margin-left: 15px; */
+    float: left;
 }
 .facebook{
     margin-top: 10px;
-    background: url('./images/social-flat.png');
-    background-repeat: no-repeat;
+    /* background: url('./images/social-flat.png'); */
+    /* background-repeat: no-repeat; */
     width: 150px;
     height: 43px;
-    margin-top: 8px;
-    background-position: 0px -38px;
-    cursor: pointer;
-    margin-left: 15px;
+    /* margin-top: 8px; */
+    /* background-position: 0px -38px; */
+    /* cursor: pointer; */
+    /* margin-left: 12px; */
 }
 footer{
     width: 100%;
@@ -139,4 +140,12 @@ footer{
     font-size: 11px;
     padding-left: 28px;
     margin-top: 10px;
+}
+
+#PreSyn{
+     display: none; 
+
+}
+#comments{
+    float: left;
 }

@@ -35,7 +35,7 @@ if(isset($_POST['addComment'])){
 <!--        <meta http-equiv="refresh" content="45;url=index.php">-->
         <title>Why Is It That...</title>
         <meta name="description" content="What is a wiit...it stands for Why Is It That. These are ironic moments in life that people can just not believe. This site was created to record those moments."/>
-        <meta name="keyword" content="Wiit, why, is, it, that, why is it that"/>
+        <meta name="keywords" content="Wiit, why, is, it, that, why is it that"/>
         <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
         <link href="./css/bootstrap.css" rel="stylesheet"/>
         <link href="./css/stylesheet.css" rel="stylesheet" />
@@ -70,7 +70,7 @@ if(isset($_POST['addComment'])){
                             <div class="commentForm">
                                 <div class="col-lg-12 col-md-12 col-sm-12" ng-controller="signupController">
                                     
-                                    <form name="commentForm"  ng-submit="submitForm();"method="post" nonvalidate>
+                                    <form name="commentForm"  ng-submit="submitForm();" method="post" nonvalidate>
                                         <label>Username</label>
                                         <input type="text" class="form-control" id="username" ng-minlength=3 ng-maxlength=15 ng-model="comment.username" name='username' placeholder="Username" required/>
                                         
@@ -118,34 +118,62 @@ if(isset($_POST['addComment'])){
                             
                         </div>
                         <div class="twitter">
-                                <a id='twitter-home' href="https://twitter.com/whyisitthatthis" class="follow-button" ></a>
+                                <a href="https://twitter.com/whyisitthatthis" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @whyisitthatthis</a>
                             </div>
                         <div class="facebook">
-                            <a id='facebook-home' href="https://www.facebook.com/whyisitthatwhen" ></a>
+                            <div class="fb-follow" data-href="https://www.facebook.com/whyisitthatwhen" data-colorscheme="light" data-layout="button" data-show-faces="false"></div>
                         </div>
                     </div>
                     <div class='col-lg-7 col-md-7 col-sm-7 contentLeft'>
-                   
-                        <div class='commentsRow'id='PreSyn' style='display: none;'>
+                        <div id="PreSyn" class="commentsRow"> 
+                            
+                            <div class='col-lg-12 col-md-12 col-sm-12'>
+                            <div class='col-lg-2 col-md-2 col-sm-2' logo>
+                                <img src='./images/smWiitLogo.png'/>
+                            </div>
                             <div class='col-lg-10 col-md-10 col-sm-10 commentbox' >
                             <div class='userName' id="userNamePreSyn"></div>
                             <div class='comment' id='commentPreSyn'></div>
-                            <div id='likeBox' class='likeBox' data-like-id='".$row['id']."'></div>
+                            <div id='likeBox' class='likeBox' data-like-id=''>Like</div>
                             <div class='likeCount' id='likeCount' data-like-count=''></div>
-                            <script>//likes()</script>
                             </div>
+                            </div>
+                           
                         </div>
-                       <?php $comment->displayComments()?>
-                            
-                       
+                        <div id="comments"> </div>
                     </div>
-                    
                 </div>
             </div>
             <footer></footer>
             
         </div>
+
         
+        
+<!--Twitter -->
+<script>
+!function(d,s,id){
+var js,fjs=d.getElementsByTagName(s)[0];
+if(!d.getElementById(id)){
+js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
+(document,"script","twitter-wjs");
+</script>
+
+
+<!--Facebook -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<!--Google Analytics -->
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
