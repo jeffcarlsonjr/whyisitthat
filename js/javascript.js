@@ -1,4 +1,6 @@
-
+$(document).ready(function(){
+    $('#comments').load('./ajax/displayComments.php');
+})
 
 $(document).ready(function(){
     $( "#add" ).click(function() {
@@ -17,6 +19,18 @@ $(document).ready(function(){
     
     
 });
+$(document).ready(function(){
+    var callAjax = function(){
+      $.ajax({
+        method:'get',
+        url:'./ajax/displayComments.php',
+        success:function(data){
+          $("#comments").html(data);
+        }
+      });
+    }
+    setInterval(callAjax,10000);
+  });
 
 function likeComment(id)
 {
