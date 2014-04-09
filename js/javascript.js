@@ -19,18 +19,14 @@ $(document).ready(function(){
     
     
 });
+
 $(document).ready(function(){
-    var callAjax = function(){
-      $.ajax({
-        method:'get',
-        url:'./ajax/displayComments.php',
-        success:function(data){
-          $("#comments").html(data);
-        }
-      });
-    }
-    setInterval(callAjax,10000);
-  });
+    $('#addComment').mousedown(function(){
+        $('#usernameOpen').show('slow')
+    })
+})
+
+    
 
 function likeComment(id)
 {
@@ -101,14 +97,14 @@ function likes(id)
                 var response = data.data;
              
                 if(response === 'no'){
-                    $("[data-like-id='"+id+"']").html('<span class="toLike" data-type-like onclick="likeComment('+id+')">Like</span>');
+                    $("[data-like-id='"+id+"']").html('<span class="toLike" data-type-like onclick="likeComment('+id+')">Kudos</span>');
+                    
 //                    console.log(response);
 //                    console.log("[data-like-id='"+id+"']")
                     
                 }
                 else if(response === 'yes'){
-                    $("[data-like-id='"+id+"']").html('<span class="toLike" data-type-unlike onclick="unLikeComment('+id+')">Unlike</span>');
-                    $("[data-like-id='"+id+"']").css('width', '46px');
+                    $("[data-like-id='"+id+"']").html('<span class="liked" data-type-unlike">Kudos</span>');
 //                    console.log(response);
 //                    console.log("[data-like-id='"+id+"']")
                 }

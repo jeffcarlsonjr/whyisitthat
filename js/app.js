@@ -25,6 +25,19 @@ validationApp.controller('commentCtrl', function($scope, $http){
 
 validationApp.controller('signupController',function($scope,$http)
     {
+        $scope.reloadPage = function(){
+            var callAjax = function(){
+            $.ajax({
+              method:'get',
+              url:'./ajax/displayComments.php',
+              success:function(data){
+                $('#PreSyn').css('display', 'none');
+                $("#comments").html(data);
+              }
+            });
+          }
+          setInterval(callAjax,30000);
+        }; 
         
         $scope.submitForm = function(){
             $scope.url = './ajax/addComment.php';
@@ -34,10 +47,11 @@ validationApp.controller('signupController',function($scope,$http)
                 $('#userNamePreSyn').html($scope.comment.username +' had to say');
                 $('#commentPreSyn').html($scope.comment.comment);
                 $('#username').html("");
-                
+                $('#usernameOpen').css('display', 'none');
                 $http.post($scope.url,{username: $scope.comment.username, email: $scope.comment.email, comment: $scope.comment.comment}).
                         success(function(data) {
                          $scope.reset();
+                         $scope.reloadPage(); 
                         });
                         console.log($scope.comment.username);
                     }

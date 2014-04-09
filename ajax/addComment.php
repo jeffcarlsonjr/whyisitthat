@@ -34,10 +34,14 @@ $user = new usersClass();
     
     $comment->createComment($data,'wiit_comments');
     
+$connectType = filter_input(INPUT_SERVER, 'HTTP_HOST');
 
-//    $message = stripcslashes($cleanComment);
-//    $messages = str_replace('"\"', '', $message);
-//    $tweet->post('statuses/update', array('status' => "$message"));
+if($connectType !== 'localhost:8888'){
+    $message = stripcslashes($cleanComment);
+    $messages = str_replace('"\"', '', $message);
+    $message = $message." #whyisitthatthis";
+    $tweet->post('statuses/update', array('status' => "$message"));
+}
     
     echo "<meta http-equiv='refresh' content='0;url=../index.php'>";
 

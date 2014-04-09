@@ -49,6 +49,7 @@ if(isset($_POST['addComment'])){
     <body>
         
         <div class="container">
+            
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <header>
@@ -62,19 +63,40 @@ if(isset($_POST['addComment'])){
             
             
             <div class='row container-row grid-row'>
+                
                 <div class="col-lg-12 col-md-12 col-sm-12 commentText">
+                    
                     <div class='col-lg-4 col-md-4 col-sm-4 contentRight'>
                         
                         <div class='addComments'>
-                            <div id='add'><h2>Add Comment</h2></div>
-                            <div class="commentForm">
-                                <div class="col-lg-12 col-md-12 col-sm-12" ng-controller="signupController">
-                                    
-                                    <form name="commentForm"  ng-submit="submitForm();" method="post" nonvalidate>
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" id="username" ng-minlength=3 ng-maxlength=15 ng-model="comment.username" name='username' placeholder="Username" required/>
+                            <h3>How many Wiits are there?</h3>
+                            <?php $comment->fullCommentCount() ?>
+                            <h3>Most Kudos?</h3>
+                            <?php $comment->mostLikes() ?>
+                        </div>
+<!--                        <div class="twitter">
+                                <a href="https://twitter.com/whyisitthatthis" class="follow-button" data-show-count="true" data-lang="en"></a>
+                            </div>
+                        <div class="facebook">
+                            <div class="follow" data-href="https://www.facebook.com/whyisitthatwhen" data-colorscheme="light" data-layout="button" data-show-faces="false"></div>
+                        </div>-->
+                    </div>
+                    <div class='col-lg-7 col-md-7 col-sm-7 contentLeft'>
+                        <div class="row submitWiit">
+                            <div class="col-lg-12 col-md-12 col-sm-12" ng-controller="signupController">
+                                
+                                <form name="commentForm"  ng-submit="submitForm();" method="post" nonvalidate>
+                                    <textarea type="text" class="form-control" ng-model="comment.comment" id="addComment" name='comment' ng-minlength="20" placeholder="Share your Why is it that..." required></textarea>
                                         
-                                        <div class="error" ng-show="commentForm.username.$dirty && commentForm.username.$invalid">
+                                    <div id="usernameOpen" >
+                                    
+                                    <input type="text" class="form-control user" id="username" ng-minlength=3 ng-maxlength=15 ng-model="comment.username" name='username' placeholder="Your Name" required/>
+                                    <input type="email" class="form-control user" id="email" name='email' ng-model="comment.email" placeholder="Your Email" required/>
+                                        
+                                          
+                                    <input type='submit' ng-disabled="commentForm.$invalid" value='Add Wiit'  class="btn-primary custBtn"/>
+                                    
+                                     <div class="error" ng-show="commentForm.username.$dirty && commentForm.username.$invalid">
                                             <small class="error" ng-show="commentForm.username.$error.required">
                                                 A username is required.
                                             </small>
@@ -85,23 +107,6 @@ if(isset($_POST['addComment'])){
                                                 Maximum characters is 15.
                                             </small>
                                         </div>
-                                        
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" id="email" name='email' ng-model="comment.email" placeholder="Email" required/>
-                                        
-                                        <div class="error" ng-show="commentForm.email.$dirty && commentForm.email.$invalid">
-                                            <small class="error" ng-show="commentForm.email.$error.required">
-                                                An email address is required.
-                                            </small>
-                                            <small class="error" ng-show="commentForm.email.$error.email">
-                                                Incorrect email format.
-                                            </small>
-                                        </div>
-                                        
-                                        
-                                        <label>Why is it that..</label>
-                                        <textarea type="text" class="form-control" ng-model="comment.comment" id="comment" name='comment' placeholder="Add a Why is it that. " ng-minlength="15" required></textarea>
-                                       
                                         <div class="error" ng-show="commentForm.comment.$dirty && commentForm.comment.$invalid">
                                             <small class="error" ng-show="commentForm.comment.$error.required">
                                                 A why is it that, isn't that why we are here? : )
@@ -110,21 +115,21 @@ if(isset($_POST['addComment'])){
                                                 Your statement is too short.
                                             </small>
                                         </div>
-                                        <input type='submit' ng-disabled="commentForm.$invalid" value='Add Comment'  class="btn-primary" ng-click="resetForm();"/>
-                                    </form>
-                                    
-                                </div>
+                                        <div class="error" ng-show="commentForm.email.$dirty && commentForm.email.$invalid">
+                                            <small class="error" ng-show="commentForm.email.$error.required">
+                                                An email address is required.
+                                            </small>
+                                            <small class="error" ng-show="commentForm.email.$error.email">
+                                                Incorrect email format.
+                                            </small>
+                                        </div> 
+                                    </div>
+
+
+                                </form> 
                             </div>
-                            
                         </div>
-                        <div class="twitter">
-                                <a href="https://twitter.com/whyisitthatthis" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @whyisitthatthis</a>
-                            </div>
-                        <div class="facebook">
-                            <div class="fb-follow" data-href="https://www.facebook.com/whyisitthatwhen" data-colorscheme="light" data-layout="button" data-show-faces="false"></div>
-                        </div>
-                    </div>
-                    <div class='col-lg-7 col-md-7 col-sm-7 contentLeft'>
+                        
                         <div id="PreSyn" class="commentsRow"> 
                             
                             <div class='col-lg-12 col-md-12 col-sm-12'>
@@ -134,7 +139,7 @@ if(isset($_POST['addComment'])){
                             <div class='col-lg-10 col-md-10 col-sm-10 commentbox' >
                             <div class='userName' id="userNamePreSyn"></div>
                             <div class='comment' id='commentPreSyn'></div>
-                            <div id='likeBox' class='likeBox' data-like-id=''>Like</div>
+                            <div id='likeBox' class='likeBox' data-like-id=''>Kudos</div>
                             <div class='likeCount' id='likeCount' data-like-count=''></div>
                             </div>
                             </div>
@@ -151,17 +156,17 @@ if(isset($_POST['addComment'])){
         
         
 <!--Twitter -->
-<script>
+<!--<script>
 !function(d,s,id){
 var js,fjs=d.getElementsByTagName(s)[0];
 if(!d.getElementById(id)){
 js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
 (document,"script","twitter-wjs");
-</script>
+</script>-->
 
 
 <!--Facebook -->
-<div id="fb-root"></div>
+<!--<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -169,11 +174,14 @@ js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.pa
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-</script>
+</script>-->
 
 
 <!--Google Analytics -->
+<?php 
+$connectType = filter_input(INPUT_SERVER, 'HTTP_HOST');
 
+if($connectType !== 'localhost:8888'){ ?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -184,5 +192,6 @@ js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.pa
   ga('send', 'pageview');
 
 </script>
+<?php } ?>
     </body>
 </html>

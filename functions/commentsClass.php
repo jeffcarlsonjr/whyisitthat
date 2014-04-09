@@ -11,7 +11,7 @@ class commentsClass {
         $this->user = new usersClass();
     }
     
-    public function displayComments(){
+    public function commentBox(){
         
         $query = "select * from wiit_comments ORDER BY dateCreated DESC";
         $result = mysql_query($query);
@@ -24,10 +24,8 @@ class commentsClass {
             echo "<div class='col-lg-2 col-md-2 col-sm-2' logo>";
             echo "<img src='./images/smWiitLogo.png'/>";
             echo "</div>";
-            echo "<div class='col-lg-10 col-md-10 col-sm-10 commentbox'>";
-            echo "<div class='userName'>".$this->user->displayUsersName($row['user_id'])." had to say:</div>";
-            echo "<div class='comment'>".$comments."</div>";
-            echo "<div id='likeBox' class='likeBox' data-like-id='".$row['id']."'></div>";
+            $this->displayComment($row['user_id'],$comments);
+            echo "<div id='likeBox' class='likeBox' data-like-id='".$row['id']."'>Kudos</div>";
             echo "<div class='likeCount' id='likeCount' data-like-count='".$row['id']."'>".$this->commmentCount($row['id'])."</div>" ;
             echo "<script>likes(".$row['id'].")</script>";
             echo "</div>";
@@ -35,6 +33,12 @@ class commentsClass {
             echo "</div>";
             
         }
+    }
+    
+    public function displayComment($userId,$comments){
+            echo "<div class='col-lg-10 col-md-10 col-sm-10 commentbox'>";
+            echo "<div class='userName'>".$this->user->displayUsersName($userId)." had to say:</div>";
+            echo "<div class='comment'>".$comments."</div>";
     }
     
     public function createComment($data,$table){
@@ -77,6 +81,45 @@ class commentsClass {
     $text = str_replace(array_keys($badWords), array_values($badWords), $text);
     return $text;
     }
+    
+    public function fullCommentCount() {
+        $i = 0;
+        $query = mysql_query("SELECT * FROM wiit_comments");
+        
+        while($row = mysql_fetch_assoc($query)){
+            $i++;
+        }
+        
+        echo "<div class='commentCount'>We currently have " .$i. " comments. </div>";
+        
+            
+    }
+    
+    public function mostLikes(){
+        $query = mysql_query("SELECT * FROM wiit_like_count");
+        $data = array();
+        $idDate = array();
+        while($row = mysql_fetch_assoc($query)){
+            $data[] = $row['like_count'];
+            $idDate[] = $row['comment_id'];
+        }
+
+
+        $array = $data;
+        $maxValue = max($array);
+        $maxIndex = array_search(max($array), $array);
+
+        $maxIndex = str_replace("int(", "", $maxIndex);
+        $newmaxIndex = str_replace(")","", $maxIndex);
+
+        $query1 = mysql_query("SELECT comment, user_id FROM wiit_comments WHERE id = $newmaxIndex ");
+
+        $row1 = mysql_fetch_assoc($query1); 
+        echo "<div class='miniName'>".$this->user->displayUsersName($row1['user_id'])." had to say</div>";
+        echo "<div class='miniComment'>".$row1['comment']."</div>";
+    }
+    
+    
 }
 
 
