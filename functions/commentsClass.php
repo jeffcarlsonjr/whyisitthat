@@ -103,23 +103,25 @@ class commentsClass {
             $data[] = $row['like_count'];
             $idDate[] = $row['comment_id'];
         }
-
+        // Grabbing an array here and using max() in order to find the most likes
+        // From there I take the position of array with the array_search using the max()
+        // and then use that position value to get the ID of the comment
 
         $array = $data;
         $maxValue = max($array);
         $maxIndex = array_search(max($array), $array);
+        
+        $idIndex = $idDate[$maxIndex];
+        
 
-        $maxIndex = str_replace("int(", "", $maxIndex);
-        $newmaxIndex = str_replace(")","", $maxIndex);
-
-        $query1 = mysql_query("SELECT comment, user_id FROM wiit_comments WHERE id = $newmaxIndex ");
-
+        $query1 = mysql_query("SELECT comment, user_id FROM wiit_comments WHERE id = '$idIndex' ");
+        
         $row1 = mysql_fetch_assoc($query1); 
         echo "<div class='miniName'>".$this->user->displayUsersName($row1['user_id'])." had to say</div>";
         echo "<div class='miniComment'>".$row1['comment']."</div>";
     }
     
-    
+        
 }
 
 

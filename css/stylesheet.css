@@ -8,8 +8,9 @@ header{
 #header{
     background: url('./images/wiitLogo.png');
     background-repeat: no-repeat;
-    height: 168px;
-    width: 600px;
+    background-size: 100% 100%;
+    width: 60%;
+    height: 158px;
     margin: 0px auto;
 }
 #add{
@@ -181,4 +182,8 @@ footer{
     padding: 5px;
     margin-left: 10px;
     margin-top: 6px;
+}
+
+@media screen and (min-width: 768px){
+    
 }

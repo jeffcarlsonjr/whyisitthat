@@ -6,6 +6,7 @@ class CRUD{
     public function select($table, $where)
     {
         $sql = "SELECT * FROM $table WHERE $where ";
+
         $result = mysql_query($sql) or die(mysql_error());
         if(mysql_num_rows($result) === 1)
           $row = mysql_fetch_assoc($result);
