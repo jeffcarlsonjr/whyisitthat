@@ -40,7 +40,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html ng-app="validationApp">
     <head>
         <meta charset="UTF-8">
         <title>Scrolling</title>
@@ -61,7 +61,7 @@ and open the template in the editor.
                 var loading  = false; //to prevents multipal ajax loads
                 var total_groups = <?php echo $total_groups?>; //total record group(s)
 
-                $('#comments').load("./pageScroll.php", {'group_no':track_load}, function() {track_load++;}); //load first group
+                $('#comments1').load("./ajax/pageScroll.php", {'group_no':track_load}, function() {track_load++;}); //load first group
 
                 $(window).scroll(function() { //detect page scroll
 
@@ -70,13 +70,13 @@ and open the template in the editor.
 
                         if(track_load < total_groups && loading==false) //there's more data to load
                         {
-                            loading = true; //prevent further ajax loading
-                            $('.animation_image').show(); //show loading image
+//                            loading = true; //prevent further ajax loading
+//                            $('.animation_image').show(); //show loading image
 
                             //load data from the server using a HTTP POST request
-                            $.post('./pageScroll.php',{'group_no': track_load}, function(data){
+                            $.post('./ajax/pageScroll.php',{'group_no': track_load}, function(data){
 
-                                $("#comments").append(data); //append received data into the element
+                                $("#comments1").append(data); //append received data into the element
 
                                 //hide loading image
                                 $('.animation_image').hide(); //hide loading image once data is received
@@ -194,7 +194,7 @@ and open the template in the editor.
                             </div>
                            
                         </div>
-                        <div id="comments"> </div>
+                        <div id="comments1"> </div>
                         <div class="animation_image" style="display:none" align="center"><img src="./images/ajax-loader.gif"></div>
                     </div>
                 </div>

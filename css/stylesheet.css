@@ -168,6 +168,11 @@ footer{
     float: left;
     padding-top: 20px;
 }
+#comments1{
+    float: left;
+    padding-top: 20px;
+    overflow: hidden;
+}
 .submitWiit{
     background-color: #eeeeee;
     padding: 13px;

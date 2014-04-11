@@ -1,6 +1,6 @@
 <?php
 
-include './functions/globalClass.php';
+include '../functions/globalClass.php';
 
 $users = new usersClass();
 $comment = new commentsClass();

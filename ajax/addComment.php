@@ -36,20 +36,10 @@ $user = new usersClass();
    
 
 
-//    $message = stripcslashes($cleanComment);
-//    $messages = str_replace('"\"', '', $message);
-//    $message = $message." #whyisitthatthis";
-//    $tweet->post('statuses/update', array('status' => "$message"));
+    $message = stripcslashes($cleanComment);
+    $messages = str_replace('"\"', '', $message);
+    $message = $message." #whyisitthatthis";
+    echo $message;
+    $tweet->post('statuses/update', array('status' => "$message"));
 
-    
-    echo "<meta http-equiv='refresh' content='0;url=../index.php'>";
-
-    
- 
-    
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 

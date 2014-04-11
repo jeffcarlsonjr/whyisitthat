@@ -1,6 +1,6 @@
-//$(document).ready(function(){
-//    $('#comments').load('./ajax/displayComments.php');
-//})
+$(document).ready(function(){
+    $('#comments').load('./ajax/displayComments.php');
+})
 
 $(document).ready(function(){
     $( "#add" ).click(function() {

@@ -36,7 +36,7 @@ validationApp.controller('signupController',function($scope,$http)
               }
             });
           }
-          setInterval(callAjax,30000);
+          setInterval(callAjax,15000);
         }; 
         
         $scope.submitForm = function(){
