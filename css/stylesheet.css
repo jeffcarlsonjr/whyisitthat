@@ -8,8 +8,9 @@ header{
 #header{
     background: url('./images/wiitLogo.png');
     background-repeat: no-repeat;
-    height: 168px;
-    width: 600px;
+    background-size: 100% 100%;
+    width: 60%;
+    height: 158px;
     margin: 0px auto;
 }
 #add{
@@ -54,7 +55,7 @@ header h1{
 }
 .commentsRow{
     
-    min-height: 190px;
+    min-height: 170px;
     margin-bottom: 10px;
     overflow: hidden;
     border-bottom: thin solid #eee;
@@ -64,7 +65,7 @@ header h1{
     min-height: 200px;
     overflow: hidden;
     background-color: white;
-    padding-top: 25px;
+    padding-top: 9px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
@@ -74,7 +75,12 @@ header h1{
 .comment{
     font-size: 18px;
     margin: 3%;
-    min-height: 100px;
+    min-height: 80px;
+}
+.minicomment{
+    font-size: 14px;
+    margin: 3%;
+    
 }
 .commentForm{
     min-height: 275px;
@@ -87,7 +93,10 @@ header h1{
     margin-top: 5px;
     color: #2aabd2;
 }
-
+.miniName{
+    font-size: 18px;
+    color: #2aabd2;
+}
 .contentRight{
     float: right;
     background-color: white;
@@ -100,21 +109,40 @@ header h1{
 }
 .toLike{
     cursor: pointer;
-    color: #666;
+    color: #d2512a;
+}
+.liked{
+    color: #acacac;
 }
 #likeBox{
-    width: 32px;
+    width: 46px;
     float: left;
+    margin-bottom: 10px;
 }
 .likeCount{
     float: left;
 }
 
 .twitter{
-    margin-top: 10px;
+    background: url('./images/social-flat.png');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 31px;
+    margin-top: 0px;
+    background-position: 0px 0px;
+    cursor: pointer;
+    margin-left: 15px;
 }
 .facebook{
     margin-top: 10px;
+    background: url('./images/social-flat.png');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 43px;
+    margin-top: 8px;
+    background-position: 0px -38px;
+    cursor: pointer;
+    margin-left: 15px;
 }
 footer{
     width: 100%;
@@ -122,4 +150,45 @@ footer{
     text-align: left;
     color: white;
     font-size: 11px;
+    padding-left: 28px;
+    margin-top: 10px;
+}
+
+#PreSyn{
+     display: none; 
+
+     margin-top: 15px;
+}
+
+#usernameOpen{
+    display: none;
+}
+
+#comments{
+    float: left;
+    padding-top: 20px;
+}
+#comments1{
+    float: left;
+    padding-top: 20px;
+    overflow: hidden;
+}
+.submitWiit{
+    background-color: #eeeeee;
+    padding: 13px;
+}
+
+.user{
+    width: 33%;
+    margin-top: 5px;
+    float: left;
+}
+.custBtn{
+    padding: 5px;
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+@media screen and (min-width: 768px){
+    
 }

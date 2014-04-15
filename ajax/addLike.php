@@ -25,7 +25,7 @@ if($row['like_id'] === $row['like_id'] && $row['active'] === 'no') {
             
             }
         }
-       
+        mysql_query("UPDATE wiit_like_count SET like_count = '".$result."' WHERE comment_id = '".$id."'");
         echo json_encode(array(
             'count' => $result
         ));
@@ -44,7 +44,7 @@ elseif(empty($row['like_id']))
             
             }
         }
-       
+        mysql_query("INSERT INTO wiit_like_count (comment_id, like_count) VALUES ('".$id."', '".$result."')");
         echo json_encode(array(
             'count' => $result
         ));

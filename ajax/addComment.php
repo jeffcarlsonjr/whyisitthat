@@ -5,10 +5,12 @@ $comment = new commentsClass();
 $user = new usersClass();
 
 // Gather information for user upload
-    
+    $json = file_get_contents("php://input");
+    $jsonData = json_decode($json, true);
 
-    $usersName = cleanInput($_POST['username']);
-    $userEmail = cleanInput($_POST['email']);
+
+    $usersName = cleanInput($jsonData['username']);
+    $userEmail = cleanInput($jsonData['email']);
   
     $date = date('Y-m-d H:i:s');
 // Set as data for class    
@@ -22,28 +24,23 @@ $user = new usersClass();
     
     $user_id = $_SESSION['user_id'];
  
-    $comments = cleanInput($_POST['comment']);
-
-    $data['comment'] = "'$comments'";
+    $comments = cleanInput($jsonData['comment']);
+    //just in case, any bad language is cleaned up with a little function cleanText()
+    $cleanComment = $comment->cleanText($comments);
+    
+    $data['comment'] = "'$cleanComment'";
     $data['active'] = "1";
     $data['user_id'] = "'$user_id'";
     $data['dateCreated'] = "'$date'";
     
     $comment->createComment($data,'wiit_comments');
-    
+   
 
-    $message = stripcslashes($comments);
+
+    $message = stripcslashes($cleanComment);
     $messages = str_replace('"\"', '', $message);
-    $tweet->post('statuses/update', array('status' => "$message"));
-    
-    echo "<meta http-equiv='refresh' content='0;url=../index.php'>";
+    $message = $message." #whyisitthatthis";
+    //message cleaned up and set to twitter
+    //$tweet->post('statuses/update', array('status' => "$message"));
 
-    
- 
-    
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 

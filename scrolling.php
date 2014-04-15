@@ -43,14 +43,13 @@ and open the template in the editor.
 <html ng-app="validationApp">
     <head>
         <meta charset="UTF-8">
-        <title>Why is it that?</title>
+        <title>Scrolling</title>
         <link href="./css/bootstrap.css" rel="stylesheet"/>
         <link href="./css/stylesheet.css" rel="stylesheet" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="./js/javascript.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="./lib/angular/angular.js"></script>
         <script src="./lib/angular/angular-route.js"></script>
-        
+        <script src="./js/javascript.js"></script>
         <script src="./js/app.js"></script>
         
     </head>
@@ -62,7 +61,7 @@ and open the template in the editor.
                 var loading  = false; //to prevents multipal ajax loads
                 var total_groups = <?php echo $total_groups?>; //total record group(s)
 
-                $('#comments').load("./ajax/pageScroll.php", {'group_no':track_load}, function() {track_load++;}); //load first group
+                $('#comments1').load("./ajax/pageScroll.php", {'group_no':track_load}, function() {track_load++;}); //load first group
 
                 $(window).scroll(function() { //detect page scroll
 
@@ -77,7 +76,7 @@ and open the template in the editor.
                             //load data from the server using a HTTP POST request
                             $.post('./ajax/pageScroll.php',{'group_no': track_load}, function(data){
 
-                                $("#comments").append(data); //append received data into the element
+                                $("#comments1").append(data); //append received data into the element
 
                                 //hide loading image
                                 $('.animation_image').hide(); //hide loading image once data is received
@@ -120,7 +119,7 @@ and open the template in the editor.
                         
                         <div class='addComments'>
                             <h3>How many Wiits are there?</h3>
-                            <div id="commentCount"></div>
+                            <?php $comment->fullCommentCount() ?>
                             <h3>Most Kudos?</h3>
                             <?php $comment->mostLikes() ?>
                         </div>
@@ -195,7 +194,7 @@ and open the template in the editor.
                             </div>
                            
                         </div>
-                        <div id="comments"> </div>
+                        <div id="comments1"> </div>
                         <div class="animation_image" style="display:none" align="center"><img src="./images/ajax-loader.gif"></div>
                     </div>
                 </div>

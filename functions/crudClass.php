@@ -6,6 +6,7 @@ class CRUD{
     public function select($table, $where)
     {
         $sql = "SELECT * FROM $table WHERE $where ";
+
         $result = mysql_query($sql) or die(mysql_error());
         if(mysql_num_rows($result) === 1)
           $row = mysql_fetch_assoc($result);
@@ -16,7 +17,7 @@ class CRUD{
     {
         $sql = "SELECT * FROM $table";
         $result = mysql_query($sql);
-        echo $sql;
+        
         return $result;
     }
 
@@ -34,7 +35,7 @@ class CRUD{
     }
     public function selectOrderBy($table, $order)
     {
-        $sql = "SELECT * FROM $table $order ";
+        $sql = "SELECT * FROM $table ORDER BY $order ";
         $result = mysql_query($sql);
         
         return $result;
@@ -81,4 +82,4 @@ class CRUD{
         return true;
     }
 }
-?>
+
