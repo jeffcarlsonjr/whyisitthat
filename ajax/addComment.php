@@ -25,6 +25,7 @@ $user = new usersClass();
     $user_id = $_SESSION['user_id'];
  
     $comments = cleanInput($jsonData['comment']);
+    //just in case, any bad language is cleaned up with a little function cleanText()
     $cleanComment = $comment->cleanText($comments);
     
     $data['comment'] = "'$cleanComment'";
@@ -39,7 +40,7 @@ $user = new usersClass();
     $message = stripcslashes($cleanComment);
     $messages = str_replace('"\"', '', $message);
     $message = $message." #whyisitthatthis";
-    echo $message;
-    $tweet->post('statuses/update', array('status' => "$message"));
+    //message cleaned up and set to twitter
+    //$tweet->post('statuses/update', array('status' => "$message"));
 
 

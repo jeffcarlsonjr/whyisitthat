@@ -29,7 +29,7 @@ validationApp.controller('signupController',function($scope,$http)
             var callAjax = function(){
             $.ajax({
               method:'get',
-              url:'./ajax/displayComments.php',
+              url:'./ajax/pageScroll.php',
               success:function(data){
                 $('#PreSyn').css('display', 'none');
                 $("#comments").html(data);
@@ -38,6 +38,18 @@ validationApp.controller('signupController',function($scope,$http)
           }
           setInterval(callAjax,15000);
         }; 
+        $scope.commentCount = function(){
+          
+                $.ajax({
+                    method: 'GET',
+                    url:'./ajax/commentCount.php',
+                    success: function(data){
+                        //console.log(data);
+                        $('#commentCount').html(data)
+                    }
+                });
+            }
+            //setInterval(callAjax,)
         
         $scope.submitForm = function(){
             $scope.url = './ajax/addComment.php';
@@ -52,8 +64,9 @@ validationApp.controller('signupController',function($scope,$http)
                         success(function(data) {
                          $scope.reset();
                          $scope.reloadPage(); 
+                         $scope.commentCount();
                         });
-                        console.log($scope.comment.username);
+                        //console.log($scope.comment.username);
                     }
                  
             };

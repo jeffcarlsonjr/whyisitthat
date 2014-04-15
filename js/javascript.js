@@ -1,6 +1,6 @@
-$(document).ready(function(){
-    $('#comments').load('./ajax/displayComments.php');
-})
+//$(document).ready(function(){
+//    $('#comments').load('./ajax/pageScroll.php');
+//});
 
 $(document).ready(function(){
     $( "#add" ).click(function() {
@@ -25,7 +25,9 @@ $(document).ready(function(){
         $('#usernameOpen').show('slow')
     })
 })
-
+$(document).ready(function(){
+    $('#commentCount').load('./ajax/commentCount.php');
+})
     
 
 function likeComment(id)

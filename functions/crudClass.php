@@ -17,7 +17,7 @@ class CRUD{
     {
         $sql = "SELECT * FROM $table";
         $result = mysql_query($sql);
-        echo $sql;
+        
         return $result;
     }
 
@@ -35,7 +35,7 @@ class CRUD{
     }
     public function selectOrderBy($table, $order)
     {
-        $sql = "SELECT * FROM $table $order ";
+        $sql = "SELECT * FROM $table ORDER BY $order ";
         $result = mysql_query($sql);
         
         return $result;
@@ -82,4 +82,4 @@ class CRUD{
         return true;
     }
 }
-?>
+

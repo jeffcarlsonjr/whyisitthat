@@ -52,7 +52,7 @@ class TwitterOAuth {
    */
   function lastStatusCode() { return $this->http_status; }
   function lastAPICall() { return $this->last_api_call; }
-
+  
   /**
    * construct TwitterOAuth object
    */

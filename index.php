@@ -1,4 +1,11 @@
-<?php include 'functions/globalClass.php'; 
+<?php 
+include "./functions/globalClass.php";
+$items_per_group = 6;
+
+
+$results = mysql_query("SELECT COUNT(id) as t_records FROM wiit_comments");
+$total_records = mysql_fetch_assoc($results);
+$total_groups = ceil($total_records['t_records']/$items_per_group);
 $_SESSION['IP'] = filter_input(INPUT_SERVER,'REMOTE_ADDR');
 
 $comment = new commentsClass();
@@ -28,26 +35,69 @@ if(isset($_POST['addComment'])){
 ?>
 
 <!DOCTYPE html>
-
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html ng-app="validationApp">
     <head>
         <meta charset="UTF-8">
-<!--        <meta http-equiv="refresh" content="45;url=index.php">-->
-        <title>Why Is It That...</title>
-        <meta name="description" content="What is a wiit...it stands for Why Is It That. These are ironic moments in life that people can just not believe. This site was created to record those moments."/>
-        <meta name="keywords" content="Wiit, why, is, it, that, why is it that"/>
-        <link rel="shortcut icon" type="image/ico" href="./images/favicon.ico" />
+        <title>Why is it that?</title>
         <link href="./css/bootstrap.css" rel="stylesheet"/>
         <link href="./css/stylesheet.css" rel="stylesheet" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="./js/javascript.js"></script>
         <script src="./lib/angular/angular.js"></script>
         <script src="./lib/angular/angular-route.js"></script>
-        <script src="./js/javascript.js"></script>
+        
         <script src="./js/app.js"></script>
-    
+        
     </head>
     <body>
-        
+<script>
+            $(document).ready(function() {
+                
+                var track_load = 0; //total loaded record group(s)
+                var loading  = false; //to prevents multipal ajax loads
+                var total_groups = <?php echo $total_groups?>; //total record group(s)
+
+                $('#comments').load("./ajax/pageScroll.php", {'group_no':track_load}, function() {track_load++;}); //load first group
+
+                $(window).scroll(function() { //detect page scroll
+
+                    if($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+                    {
+
+                        if(track_load < total_groups && loading==false) //there's more data to load
+                        {
+//                            loading = true; //prevent further ajax loading
+//                            $('.animation_image').show(); //show loading image
+
+                            //load data from the server using a HTTP POST request
+                            $.post('./ajax/pageScroll.php',{'group_no': track_load}, function(data){
+
+                                $("#comments").append(data); //append received data into the element
+
+                                //hide loading image
+                                $('.animation_image').hide(); //hide loading image once data is received
+
+                                track_load++; //loaded group increment
+                                loading = false; 
+
+                            }).fail(function(xhr, ajaxOptions, thrownError) { //any errors?
+
+                                alert(thrownError); //alert with HTTP error
+                                $('.animation_image').hide(); //hide loading image
+                                loading = false;
+
+                            });
+
+                        }
+                    }
+                });
+            });
+        </script>
         <div class="container">
             
             <div class="row">
@@ -70,7 +120,7 @@ if(isset($_POST['addComment'])){
                         
                         <div class='addComments'>
                             <h3>How many Wiits are there?</h3>
-                            <?php $comment->fullCommentCount() ?>
+                            <div id="commentCount"></div>
                             <h3>Most Kudos?</h3>
                             <?php $comment->mostLikes() ?>
                         </div>
@@ -146,52 +196,13 @@ if(isset($_POST['addComment'])){
                            
                         </div>
                         <div id="comments"> </div>
+                        <div class="animation_image" style="display:none" align="center"><img src="./images/ajax-loader.gif"></div>
                     </div>
                 </div>
             </div>
             <footer></footer>
             
         </div>
-
         
-        
-<!--Twitter -->
-<!--<script>
-!function(d,s,id){
-var js,fjs=d.getElementsByTagName(s)[0];
-if(!d.getElementById(id)){
-js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
-(document,"script","twitter-wjs");
-</script>-->
-
-
-<!--Facebook -->
-<!--<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>-->
-
-
-<!--Google Analytics -->
-<?php 
-$connectType = filter_input(INPUT_SERVER, 'HTTP_HOST');
-
-if($connectType !== 'localhost:8888'){ ?>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49596745-1', 'whyisitthat.net');
-  ga('send', 'pageview');
-
-</script>
-<?php } ?>
     </body>
 </html>
